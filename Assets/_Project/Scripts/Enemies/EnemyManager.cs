@@ -9,12 +9,19 @@ namespace WebGLRescueArena
         [SerializeField] private Transform player;
         private readonly List<EnemyController> enemies = new List<EnemyController>();
         public int Count => enemies.Count;
+
         public void Register(EnemyController enemy) => enemies.Add(enemy);
+
         public void Unregister(EnemyController enemy) => enemies.Remove(enemy);
+
         private void Update()
         {
-            List<EnemyController> living = enemies.Where(enemy => enemy != null).OrderBy(enemy => Vector3.SqrMagnitude(enemy.transform.position - player.position)).ToList();
-            for (int index = 0; index < living.Count; index++) living[index].Tick();
+            List<EnemyController> living = enemies
+                .Where(enemy => enemy != null)
+                .OrderBy(enemy => Vector3.SqrMagnitude(enemy.transform.position - player.position))
+                .ToList();
+            for (int index = 0; index < living.Count; index++)
+                living[index].Tick();
         }
     }
 }

@@ -12,10 +12,15 @@ namespace WebGLRescueArena
         public static event Action GameEnded;
 
         public static void RaiseEnemyKilled(int score) => EnemyKilled?.Invoke(score);
+
         public static void RaisePlayerDamaged(int amount) => PlayerDamaged?.Invoke(amount);
+
         public static void RaisePlayerDied() => PlayerDied?.Invoke();
+
         public static void RaiseScoreChanged(int score) => ScoreChanged?.Invoke(score);
+
         public static void RaiseGameStarted() => GameStarted?.Invoke();
+
         public static void RaiseGameEnded() => GameEnded?.Invoke();
     }
 }

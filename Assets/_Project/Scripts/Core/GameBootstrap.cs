@@ -6,12 +6,18 @@ namespace WebGLRescueArena
     {
         [SerializeField] private SceneLoader sceneLoader;
         private static GameBootstrap instance;
+
         private void Awake()
         {
-            if (instance != null) { Destroy(gameObject); return; }
+            if (instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
         private void Start() => sceneLoader.LoadMainMenu();
     }
 }
