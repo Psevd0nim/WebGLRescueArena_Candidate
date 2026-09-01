@@ -34,20 +34,11 @@ namespace WebGLRescueArena
             Vector3 direction = target.position - transform.position;
             direction.y = 0f;
             float distance = Vector3.Distance(transform.position, target.position);
-            if (
-                Physics.Raycast(
-                    transform.position + Vector3.up * 0.4f,
-                    direction.normalized,
-                    distance,
-                    obstructionMask
-                )
-            )
+            if (Physics.Raycast(transform.position + Vector3.up * 0.4f, direction.normalized, distance, obstructionMask))
                 return;
             if (distance > 1.1f)
                 transform.position += direction.normalized * (moveSpeed * Time.deltaTime);
-            transform.LookAt(
-                new Vector3(target.position.x, transform.position.y, target.position.z)
-            );
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             attack.Tick(target);
         }
 
