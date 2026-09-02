@@ -17,7 +17,6 @@ namespace WebGLRescueArena
             if (score > BestScore)
             {
                 PlayerPrefs.SetInt(BestScoreKey, score);
-                //it's necessary? never used
                 PlayerPrefs.Save();
             }
         }

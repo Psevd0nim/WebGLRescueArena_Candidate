@@ -12,7 +12,6 @@ namespace WebGLRescueArena
 
         private void OnEnable()
         {
-            //check for null?
             musicToggle.isOn = saveService.MusicEnabled;
             sfxToggle.isOn = saveService.SfxEnabled;
         }
