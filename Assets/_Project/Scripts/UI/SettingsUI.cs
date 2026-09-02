@@ -6,15 +6,13 @@ namespace WebGLRescueArena
     public sealed class SettingsUI : MonoBehaviour
     {
         [SerializeField] private Toggle musicToggle;
-
         [SerializeField] private Toggle sfxToggle;
-
         [SerializeField] private SaveService saveService;
-
         [SerializeField] private AudioManager audioManager;
 
         private void OnEnable()
         {
+            //check for null?
             musicToggle.isOn = saveService.MusicEnabled;
             sfxToggle.isOn = saveService.SfxEnabled;
         }

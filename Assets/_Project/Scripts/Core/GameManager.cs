@@ -5,15 +5,13 @@ namespace WebGLRescueArena
     public sealed class GameManager : MonoBehaviour
     {
         [SerializeField] private HUDController hud;
-
         [SerializeField] private GameOverUI gameOverUI;
-
         [SerializeField] private EnemySpawner enemySpawner;
-
         [SerializeField] private PlayerHealth playerHealth;
-
         [SerializeField] private bool stressMode;
+
         private int score;
+        //what is the purpose of this variable?
         private static int accumulatedScore;
         private float elapsedTime;
         private bool ended;
@@ -34,12 +32,7 @@ namespace WebGLRescueArena
         private void Update()
         {
             elapsedTime += Time.deltaTime;
-            hud.Refresh(
-                score,
-                playerHealth.CurrentHealth,
-                enemySpawner.ActiveEnemyCount,
-                elapsedTime
-            );
+            hud.Refresh(score, playerHealth.CurrentHealth, enemySpawner.ActiveEnemyCount, elapsedTime);
             if (Input.GetKeyDown(KeyCode.F8))
                 enemySpawner.EnableStressMode();
         }
@@ -63,13 +56,13 @@ namespace WebGLRescueArena
             if (ended)
                 return;
             ended = true;
-            FindObjectOfType<SaveService>().SaveBestScore(score);
-            gameOverUI.Show(score, FindObjectOfType<SaveService>().BestScore);
+            FindAnyObjectByType<SaveService>().SaveBestScore(score);
+            gameOverUI.Show(score, FindAnyObjectByType<SaveService>().BestScore);
             GameEvents.RaiseGameEnded();
         }
 
-        public void Restart() => FindObjectOfType<SceneLoader>().RestartGame();
+        public void Restart() => FindAnyObjectByType<SceneLoader>().RestartGame();
 
-        public void ReturnToMenu() => FindObjectOfType<SceneLoader>().LoadMainMenu();
+        public void ReturnToMenu() => FindAnyObjectByType<SceneLoader>().LoadMainMenu();
     }
 }

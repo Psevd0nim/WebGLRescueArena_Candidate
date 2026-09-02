@@ -12,11 +12,14 @@ namespace WebGLRescueArena
 
         private void LateUpdate()
         {
+            //smoothly follow, Lerp will never reach the target, so it will always be moving, but it will be smooth
+            //not full correctly using Lerp
             transform.position = Vector3.Lerp(
                 transform.position,
                 target.position + offset,
                 followSpeed * Time.deltaTime
             );
+            //every frame?
             transform.rotation = Quaternion.Euler(55f, 0f, 0f);
         }
     }

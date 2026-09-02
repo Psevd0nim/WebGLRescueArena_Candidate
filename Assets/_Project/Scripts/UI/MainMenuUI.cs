@@ -5,7 +5,6 @@ namespace WebGLRescueArena
     public sealed class MainMenuUI : MonoBehaviour
     {
         [SerializeField] private SceneLoader sceneLoader;
-
         [SerializeField] private GameObject settingsPanel;
 
         public void Play() => sceneLoader.LoadGame();

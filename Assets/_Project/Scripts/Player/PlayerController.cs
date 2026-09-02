@@ -6,8 +6,8 @@ namespace WebGLRescueArena
     public sealed class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerInputReader input;
-
         [SerializeField] private float moveSpeed = 7f;
+
         private Rigidbody body;
 
         private void Awake() => body = GetComponent<Rigidbody>();
@@ -15,9 +15,7 @@ namespace WebGLRescueArena
         private void FixedUpdate()
         {
             Vector2 move = input.Move.normalized;
-            body.MovePosition(
-                body.position + new Vector3(move.x, 0f, move.y) * (moveSpeed * Time.fixedDeltaTime)
-            );
+            body.MovePosition(body.position + new Vector3(move.x, 0f, move.y) * (moveSpeed * Time.fixedDeltaTime));
         }
 
         private void Update()

@@ -6,7 +6,6 @@ namespace WebGLRescueArena
     public sealed class SceneLoader : MonoBehaviour
     {
         [SerializeField] private string mainMenuScene = "MainMenu";
-
         [SerializeField] private string gameScene = "Game";
 
         public void LoadMainMenu() => SceneManager.LoadScene(mainMenuScene);

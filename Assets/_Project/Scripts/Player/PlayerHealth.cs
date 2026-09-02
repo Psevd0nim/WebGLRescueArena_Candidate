@@ -5,6 +5,7 @@ namespace WebGLRescueArena
     public sealed class PlayerHealth : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 100;
+
         public int CurrentHealth { get; private set; }
 
         private void Awake() => CurrentHealth = maxHealth;

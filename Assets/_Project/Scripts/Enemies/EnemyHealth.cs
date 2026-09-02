@@ -5,10 +5,9 @@ namespace WebGLRescueArena
     public sealed class EnemyHealth : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 30;
-
         [SerializeField] private int scoreValue = 10;
-
         [SerializeField] private GameObject deathEffectPrefab;
+
         private int currentHealth;
 
         private void Awake() => currentHealth = maxHealth;

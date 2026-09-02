@@ -6,8 +6,8 @@ namespace WebGLRescueArena
     public sealed class MobileJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler
     {
         [SerializeField] private RectTransform handle;
-
         [SerializeField] private float radius = 70f;
+
         public Vector2 Value { get; private set; }
 
         public void OnDrag(PointerEventData data)

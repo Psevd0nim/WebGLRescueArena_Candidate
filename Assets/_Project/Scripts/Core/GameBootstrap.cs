@@ -5,6 +5,7 @@ namespace WebGLRescueArena
     public sealed class GameBootstrap : MonoBehaviour
     {
         [SerializeField] private SceneLoader sceneLoader;
+
         private static GameBootstrap instance;
 
         private void Awake()

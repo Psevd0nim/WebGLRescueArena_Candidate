@@ -6,8 +6,8 @@ namespace WebGLRescueArena
     public sealed class Projectile : MonoBehaviour
     {
         [SerializeField] private float lifetime = 2.5f;
-
         [SerializeField] private GameObject fallbackImpactEffect;
+
         private Rigidbody body;
         private int damage;
 
@@ -28,8 +28,9 @@ namespace WebGLRescueArena
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
-            GameObject impact =
-                Resources.Load<GameObject>("Effects/Impact") ?? fallbackImpactEffect;
+
+            //special useless code? can use just prefab ref?
+            GameObject impact = Resources.Load<GameObject>("Effects/Impact") ?? fallbackImpactEffect;
             if (impact != null)
                 Instantiate(impact, transform.position, Quaternion.identity);
             Destroy(gameObject);

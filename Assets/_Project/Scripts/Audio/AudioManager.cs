@@ -5,7 +5,6 @@ namespace WebGLRescueArena
     public sealed class AudioManager : MonoBehaviour
     {
         [SerializeField] private AudioSource musicSource;
-
         [SerializeField] private AudioSource sfxSource;
 
         public void SetMusic(bool enabled)

@@ -5,14 +5,10 @@ namespace WebGLRescueArena
     public sealed class PlayerInputReader : MonoBehaviour
     {
         [SerializeField] private MobileJoystick joystick;
-
         [SerializeField] private MobileFireButton fireButton;
 
-        public Vector2 Move =>
-            new Vector2(
-                UnityEngine.Input.GetAxisRaw("Horizontal"),
-                UnityEngine.Input.GetAxisRaw("Vertical")
-            ) + (joystick == null ? Vector2.zero : joystick.Value);
+        public Vector2 Move => new Vector2(UnityEngine.Input.GetAxisRaw("Horizontal"), UnityEngine.Input.GetAxisRaw("Vertical"))
+            + (joystick == null ? Vector2.zero : joystick.Value);
 
         public bool FireHeld =>
             UnityEngine.Input.GetMouseButton(0) || (fireButton != null && fireButton.IsPressed);

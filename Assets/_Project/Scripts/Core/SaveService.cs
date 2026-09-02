@@ -7,6 +7,7 @@ namespace WebGLRescueArena
         private const string BestScoreKey = "best_score";
         private const string MusicKey = "music_enabled";
         private const string SfxKey = "sfx_enabled";
+
         public int BestScore => PlayerPrefs.GetInt(BestScoreKey, 0);
         public bool MusicEnabled => PlayerPrefs.GetInt(MusicKey, 1) == 1;
         public bool SfxEnabled => PlayerPrefs.GetInt(SfxKey, 1) == 1;
@@ -16,6 +17,7 @@ namespace WebGLRescueArena
             if (score > BestScore)
             {
                 PlayerPrefs.SetInt(BestScoreKey, score);
+                //it's necessary? never used
                 PlayerPrefs.Save();
             }
         }
