@@ -6,8 +6,8 @@ namespace WebGLRescueArena
     public sealed class SimpleObjectPool : MonoBehaviour
     {
         [SerializeField] private GameObject prefab;
-
         [SerializeField] private int initialSize = 16;
+
         private readonly Queue<GameObject> available = new Queue<GameObject>();
 
         private void Awake()
