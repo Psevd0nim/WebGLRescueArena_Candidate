@@ -880,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WebGLRescueArena.EnemyManager
   player: {fileID: 729014395}
+  _enableEnemyTickPipeline: 0
 --- !u!1 &414729841
 GameObject:
   m_ObjectHideFlags: 0
