@@ -12,7 +12,6 @@ namespace WebGLRescueArena
         private EnemyAttack attack;
         private EnemyManager manager;
 
-        //why not attach from inspector?
         private void Awake() => attack = GetComponent<EnemyAttack>();
 
         private void Start()
@@ -30,7 +29,6 @@ namespace WebGLRescueArena
 
         private void Update()
         {
-            //every frame try to find player? using function like FindGameObject... in update is not a good idea
             if (target == null)
                 target = GameObject.FindGameObjectWithTag("Player").transform;
             Vector3 direction = target.position - transform.position;

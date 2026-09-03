@@ -11,7 +11,6 @@ namespace WebGLRescueArena
         [SerializeField] private bool stressMode;
 
         private int score;
-        //what is the purpose of this variable?
         private static int accumulatedScore;
         private float elapsedTime;
         private bool ended;
@@ -19,6 +18,7 @@ namespace WebGLRescueArena
 
         private void Awake()
         {
+            Time.timeScale = 1f;
             if (stressMode)
                 enemySpawner.EnableStressMode();
         }
@@ -27,6 +27,12 @@ namespace WebGLRescueArena
         {
             GameEvents.EnemyKilled += OnEnemyKilled;
             GameEvents.PlayerDied += OnPlayerDied;
+        }
+
+        private void OnDisable()
+        {
+            GameEvents.EnemyKilled -= OnEnemyKilled;
+            GameEvents.PlayerDied -= OnPlayerDied;
         }
 
         private void Update()
@@ -59,6 +65,8 @@ namespace WebGLRescueArena
             FindAnyObjectByType<SaveService>().SaveBestScore(score);
             gameOverUI.Show(score, FindAnyObjectByType<SaveService>().BestScore);
             GameEvents.RaiseGameEnded();
+
+            Time.timeScale = 0f;
         }
 
         public void Restart() => FindAnyObjectByType<SceneLoader>().RestartGame();

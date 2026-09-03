@@ -44,7 +44,8 @@ namespace WebGLRescueArena
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
-            GameObject impact = Resources.Load<GameObject>("Effects/Impact") ?? fallbackImpactEffect;
+            //GameObject impact = Resources.Load<GameObject>("Effects/Impact") ?? fallbackImpactEffect;
+            GameObject impact = fallbackImpactEffect;
             if (impact != null)
                 Instantiate(impact, transform.position, Quaternion.identity);
             //Destroy(gameObject);
@@ -53,6 +54,9 @@ namespace WebGLRescueArena
 
         private void DeathRattle()
         {
+            if (_death)
+                return;
+
             _death = true;
             if (_projectilePool != null)
             {
