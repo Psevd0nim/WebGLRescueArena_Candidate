@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace WebGLRescueArena
@@ -10,14 +11,24 @@ namespace WebGLRescueArena
 
         private Rigidbody body;
         private int damage;
+        private SimpleObjectPool _projectilePool;
 
         private void Awake()
         {
             body = GetComponent<Rigidbody>();
-            Destroy(gameObject, lifetime);
+            //Destroy(gameObject, lifetime);
+            _projectilePool  = GetComponentInParent<SimpleObjectPool>();
         }
 
-        public void Launch(float speed, int damageValue)
+        public void Init(Vector3 spawnPosition, Quaternion spawnRotation)
+        {
+            transform.position = spawnPosition;
+            transform.rotation = spawnRotation;
+            gameObject.SetActive(true);
+            StartCoroutine(LifeTimeCoroutine());
+        }
+
+        public void  Launch(float speed, int damageValue)
         {
             damage = damageValue;
             body.linearVelocity = transform.forward * speed;
@@ -28,12 +39,23 @@ namespace WebGLRescueArena
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
-
-            //special useless code? can use just prefab ref?
             GameObject impact = Resources.Load<GameObject>("Effects/Impact") ?? fallbackImpactEffect;
             if (impact != null)
                 Instantiate(impact, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            DeathRattle();
+        }
+
+        private void DeathRattle()
+        {
+            if(_projectilePool != null)
+                _projectilePool.Return(gameObject);
+        }
+
+        private IEnumerator LifeTimeCoroutine()
+        {
+            yield return new WaitForSeconds(lifetime);
+            DeathRattle();
         }
     }
 }

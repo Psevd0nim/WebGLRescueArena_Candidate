@@ -13,11 +13,11 @@ namespace WebGLRescueArena
         private void Awake()
         {
             for (int i = 0; i < initialSize; i++)
-                Return(Instantiate(prefab));
+                Return(Instantiate(prefab, transform));
         }
 
         public GameObject Take() =>
-            available.Count == 0 ? Instantiate(prefab) : available.Dequeue();
+            available.Count == 0 ? Instantiate(prefab, transform) : available.Dequeue();
 
         public void Return(GameObject item)
         {
