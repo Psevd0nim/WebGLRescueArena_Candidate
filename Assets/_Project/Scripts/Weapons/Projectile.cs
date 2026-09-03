@@ -12,6 +12,7 @@ namespace WebGLRescueArena
         private Rigidbody body;
         private int damage;
         private SimpleObjectPool _projectilePool;
+        private bool _death;
 
         private void Awake()
         {
@@ -22,6 +23,7 @@ namespace WebGLRescueArena
 
         public void Init(Vector3 spawnPosition, Quaternion spawnRotation)
         {
+            _death = false;
             transform.position = spawnPosition;
             transform.rotation = spawnRotation;
             gameObject.SetActive(true);
@@ -36,6 +38,9 @@ namespace WebGLRescueArena
 
         private void OnTriggerEnter(Collider other)
         {
+            if (_death)
+                return;
+
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
@@ -48,8 +53,11 @@ namespace WebGLRescueArena
 
         private void DeathRattle()
         {
-            if(_projectilePool != null)
+            _death = true;
+            if (_projectilePool != null)
+            {
                 _projectilePool.Return(gameObject);
+            }
         }
 
         private IEnumerator LifeTimeCoroutine()
